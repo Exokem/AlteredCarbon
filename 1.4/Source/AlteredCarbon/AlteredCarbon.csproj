@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0ModSettingsFramework">
-      <HintPath>..\..\..\..\VanillaExpandedFramework\1.4\Assemblies\0ModSettingsFramework.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2023507013\1.4\Assemblies\0ModSettingsFramework.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="AlienRace">
@@ -67,11 +67,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="VFECore">
-      <HintPath>..\..\..\..\VanillaExpandedFramework\1.4\Assemblies\VFECore.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2023507013\1.4\Assemblies\VFECore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VREAndroids">
-      <HintPath>..\..\..\..\VanillaRacesExpanded-Android\1.4\Assemblies\VREAndroids.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2975771801\1.4\Assemblies\VREAndroids.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VSE">

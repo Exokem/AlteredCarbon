@@ -728,9 +728,7 @@ namespace AlteredCarbon
 
         public static Hediff MakeHediff(HediffDef hediffDef, Pawn pawn, BodyPartRecord part)
         {
-            return ModCompatibility.RimJobWorldIsActive
-                ? rjw.SexPartAdder.MakePart(hediffDef, pawn, part)
-                : HediffMaker.MakeHediff(hediffDef, pawn, part);
+            return HediffMaker.MakeHediff(hediffDef, pawn, part);
         }
 
         public static bool HasStackInsideOrOutside(this Pawn pawn)
@@ -761,8 +759,9 @@ namespace AlteredCarbon
 
         public static bool SleeveMatchesOriginalXenotype(this Pawn p, PersonaData stackPersonaData)
         {
-            return stackPersonaData.OriginalXenotypeName != null && p.genes.xenotypeName != stackPersonaData.OriginalXenotypeName
-                   || stackPersonaData.OriginalXenotypeDef != null && p.genes.xenotype != stackPersonaData.OriginalXenotypeDef;
+            return true;
+            // return stackPersonaData.OriginalXenotypeName != null && p.genes.xenotypeName != stackPersonaData.OriginalXenotypeName
+            //        || stackPersonaData.OriginalXenotypeDef != null && p.genes.xenotype != stackPersonaData.OriginalXenotypeDef;
         }
 
         public static void CleanupList<T>(this List<T> list, Predicate<T> predicate = null)

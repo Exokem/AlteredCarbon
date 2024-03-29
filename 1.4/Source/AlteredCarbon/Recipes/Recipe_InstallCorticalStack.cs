@@ -90,6 +90,8 @@ namespace AlteredCarbon
         public static void ApplyCorticalStack(RecipeDef recipe, Pawn pawn, BodyPartRecord part, CorticalStack corticalStack)
         {
             pawnToInstallStack = pawn;
+            corticalStack.PersonaData.OriginalXenotypeDef = pawn.genes.xenotype;
+            corticalStack.PersonaData.OriginalXenotypeName = pawn.genes.xenotypeName;
             var hediff = HediffMaker.MakeHediff(recipe.addsHediff, pawn) as Hediff_CorticalStack;
             if (corticalStack.PersonaData.ContainsInnerPersona)
             {
@@ -167,7 +169,7 @@ namespace AlteredCarbon
             }
             if (pawn.SleeveMatchesOriginalXenotype(hediff.PersonaData))
             {
-                pawn.needs.mood.thoughts.memories.TryGainMemory(AC_DefOf.VFEU_WrongXenotype);
+                // pawn.needs.mood.thoughts.memories.TryGainMemory(AC_DefOf.VFEU_WrongXenotype);
             }
 
             var naturalMood = pawn.story.traits.GetTrait(TraitDefOf.NaturalMood);

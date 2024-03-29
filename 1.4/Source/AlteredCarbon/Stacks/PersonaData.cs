@@ -571,8 +571,8 @@ namespace AlteredCarbon
 
             if (ModCompatibility.IndividualityIsActive)
             {
-                sexuality = ModCompatibility.GetSyrTraitsSexuality(pawn);
-                romanceFactor = ModCompatibility.GetSyrTraitsRomanceFactor(pawn);
+                //sexuality = ModCompatibility.GetSyrTraitsSexuality(pawn);
+                //romanceFactor = ModCompatibility.GetSyrTraitsRomanceFactor(pawn);
             }
             if (ModCompatibility.PsychologyIsActive)
             {

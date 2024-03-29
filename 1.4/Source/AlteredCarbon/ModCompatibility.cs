@@ -242,20 +242,20 @@ namespace AlteredCarbon
 
 		public static void CopyPrivateParts(Pawn source, Pawn to)
 		{
-            foreach (var hediff in source.health.hediffSet.hediffs.ToList())
-            {
-				if (hediff is rjw.Hediff_PartBaseNatural part)
-				{
-					var existingHediff = to.health.hediffSet.GetFirstHediffOfDef(part.def);
-					if (existingHediff != null)
-					{
-						to.health.RemoveHediff(existingHediff);
-					}
-					var newPart = rjw.SexPartAdder.MakePart(part.def, to, part.Part);
-					newPart.Severity = part.Severity;
-					to.health.AddHediff(newPart);
-				}
-            }
+    //        foreach (var hediff in source.health.hediffSet.hediffs.ToList())
+    //        {
+				//if (hediff is rjw.Hediff_PartBaseNatural part)
+				//{
+				//	var existingHediff = to.health.hediffSet.GetFirstHediffOfDef(part.def);
+				//	if (existingHediff != null)
+				//	{
+				//		to.health.RemoveHediff(existingHediff);
+				//	}
+				//	var newPart = rjw.SexPartAdder.MakePart(part.def, to, part.Part);
+				//	newPart.Severity = part.Severity;
+				//	to.health.AddHediff(newPart);
+				//}
+    //        }
         }
 
 		public static List<Color> GetRacialColorPresets(ThingDef thingDef, string channelName)
@@ -308,16 +308,16 @@ namespace AlteredCarbon
             }
             return GetGrowableRaces(excludedRaces).OrderBy(entry => entry.LabelCap.RawText).ToList();
         }
-        public static int GetSyrTraitsSexuality(Pawn pawn)
-		{
-			SyrTraits.CompIndividuality comp = ThingCompUtility.TryGetComp<SyrTraits.CompIndividuality>(pawn);
-			return comp != null ? (int)comp.sexuality : -1;
-		}
-		public static float GetSyrTraitsRomanceFactor(Pawn pawn)
-		{
-			SyrTraits.CompIndividuality comp = ThingCompUtility.TryGetComp<SyrTraits.CompIndividuality>(pawn);
-			return comp != null ? comp.RomanceFactor : -1f;
-		}
+  //      public static int GetSyrTraitsSexuality(Pawn pawn)
+		//{
+		//	SyrTraits.CompIndividuality comp = ThingCompUtility.TryGetComp<SyrTraits.CompIndividuality>(pawn);
+		//	return comp != null ? (int)comp.sexuality : -1;
+		//}
+		//public static float GetSyrTraitsRomanceFactor(Pawn pawn)
+		//{
+		//	SyrTraits.CompIndividuality comp = ThingCompUtility.TryGetComp<SyrTraits.CompIndividuality>(pawn);
+		//	return comp != null ? comp.RomanceFactor : -1f;
+		//}
 
 		public static void CopyFacialFeatures(Pawn source, Pawn dest)
 		{
@@ -348,51 +348,51 @@ namespace AlteredCarbon
 		}
 		public static void SetSyrTraitsSexuality(Pawn pawn, int sexuality)
 		{
-			SyrTraits.CompIndividuality comp = ThingCompUtility.TryGetComp<SyrTraits.CompIndividuality>(pawn);
-			if (comp != null)
-			{
-				comp.sexuality = (SyrTraits.CompIndividuality.Sexuality)sexuality;
-			}
+			//SyrTraits.CompIndividuality comp = ThingCompUtility.TryGetComp<SyrTraits.CompIndividuality>(pawn);
+			//if (comp != null)
+			//{
+			//	comp.sexuality = (SyrTraits.CompIndividuality.Sexuality)sexuality;
+			//}
 		}
 		public static void SetSyrTraitsRomanceFactor(Pawn pawn, float romanceFactor)
 		{
-			SyrTraits.CompIndividuality comp = ThingCompUtility.TryGetComp<SyrTraits.CompIndividuality>(pawn);
-			if (comp != null)
-			{
-				comp.RomanceFactor = romanceFactor;
-			}
+			//SyrTraits.CompIndividuality comp = ThingCompUtility.TryGetComp<SyrTraits.CompIndividuality>(pawn);
+			//if (comp != null)
+			//{
+			//	comp.RomanceFactor = romanceFactor;
+			//}
 		}
 
 		public static PsychologyData GetPsychologyData(Pawn pawn)
 		{
-			Psychology.CompPsychology comp = ThingCompUtility.TryGetComp<Psychology.CompPsychology>(pawn);
-			if (comp != null)
-			{
-				PsychologyData psychologyData = new PsychologyData();
-				Psychology.Pawn_SexualityTracker sexualityTracker = comp.Sexuality;
-				psychologyData.sexDrive = sexualityTracker.sexDrive;
-				psychologyData.romanticDrive = sexualityTracker.romanticDrive;
-				psychologyData.kinseyRating = sexualityTracker.kinseyRating;
-                psychologyData.knownSexualities = sexualityTracker.knownSexualities;
-				return psychologyData;
-			}
+			//Psychology.CompPsychology comp = ThingCompUtility.TryGetComp<Psychology.CompPsychology>(pawn);
+			//if (comp != null)
+			//{
+			//	PsychologyData psychologyData = new PsychologyData();
+			//	Psychology.Pawn_SexualityTracker sexualityTracker = comp.Sexuality;
+			//	psychologyData.sexDrive = sexualityTracker.sexDrive;
+			//	psychologyData.romanticDrive = sexualityTracker.romanticDrive;
+			//	psychologyData.kinseyRating = sexualityTracker.kinseyRating;
+   //             psychologyData.knownSexualities = sexualityTracker.knownSexualities;
+			//	return psychologyData;
+			//}
 			return null;
 		}
 
 		public static void SetPsychologyData(Pawn pawn, PsychologyData psychologyData)
 		{
-			Psychology.CompPsychology comp = ThingCompUtility.TryGetComp<Psychology.CompPsychology>(pawn);
-			if (comp != null)
-			{
-				Psychology.Pawn_SexualityTracker sexualityTracker = new Psychology.Pawn_SexualityTracker(pawn)
-				{
-					sexDrive = psychologyData.sexDrive,
-					romanticDrive = psychologyData.romanticDrive,
-					kinseyRating = psychologyData.kinseyRating
-				};
-				sexualityTracker.knownSexualities = psychologyData.knownSexualities;
-				comp.Sexuality = sexualityTracker;
-			}
+			//Psychology.CompPsychology comp = ThingCompUtility.TryGetComp<Psychology.CompPsychology>(pawn);
+			//if (comp != null)
+			//{
+			//	Psychology.Pawn_SexualityTracker sexualityTracker = new Psychology.Pawn_SexualityTracker(pawn)
+			//	{
+			//		sexDrive = psychologyData.sexDrive,
+			//		romanticDrive = psychologyData.romanticDrive,
+			//		kinseyRating = psychologyData.kinseyRating
+			//	};
+			//	sexualityTracker.knownSexualities = psychologyData.knownSexualities;
+			//	comp.Sexuality = sexualityTracker;
+			//}
 		}
 
 		public static void UpdateGenderRestrictions(ThingDef raceDef, out bool allowMales, out bool allowFemales)
@@ -463,80 +463,80 @@ namespace AlteredCarbon
 		{
 			try
 			{
-				rjw.RacePartDef part = DefDatabase<rjw.RacePartDef>.GetNamedSilentFail(hediffDef.defName);
-				if (part != null)
-				{
-					object[] parms = new object[2];
-					parms[0] = pawn.kindDef;
+				//rjw.RacePartDef part = DefDatabase<rjw.RacePartDef>.GetNamedSilentFail(hediffDef.defName);
+				//if (part != null)
+				//{
+				//	object[] parms = new object[2];
+				//	parms[0] = pawn.kindDef;
 
-					if ((bool)tryGetRaceGroupDef.Invoke(null, parms))
-					{
-						rjw.RaceGroupDef def = parms[1] as rjw.RaceGroupDef;
-						if (hediffDef.IsBreasts())
-						{
-							if (def.femaleBreasts != null || def.maleBreasts != null)
-							{
-								if (def.femaleBreasts != null && def.femaleBreasts.Contains(hediffDef.defName))
-								{
-									return true;
-								}
-								else if (def.maleBreasts != null && def.maleBreasts.Contains(hediffDef.defName))
-								{
-									return true;
-								}
-								return false;
-							}
-						}
+				//	if ((bool)tryGetRaceGroupDef.Invoke(null, parms))
+				//	{
+				//		rjw.RaceGroupDef def = parms[1] as rjw.RaceGroupDef;
+				//		if (hediffDef.IsBreasts())
+				//		{
+				//			if (def.femaleBreasts != null || def.maleBreasts != null)
+				//			{
+				//				if (def.femaleBreasts != null && def.femaleBreasts.Contains(hediffDef.defName))
+				//				{
+				//					return true;
+				//				}
+				//				else if (def.maleBreasts != null && def.maleBreasts.Contains(hediffDef.defName))
+				//				{
+				//					return true;
+				//				}
+				//				return false;
+				//			}
+				//		}
 
-						if (hediffDef.IsGenitals())
-						{
-							if (def.femaleGenitals != null || def.maleGenitals != null)
-							{
-								if (def.femaleGenitals != null && def.femaleGenitals.Contains(hediffDef.defName))
-								{
-									return true;
-								}
-								else if (def.maleGenitals != null && def.maleGenitals.Contains(hediffDef.defName))
-								{
-									return true;
-								}
-								return false;
-							}
-						}
-						if (hediffDef.IsAnus())
-						{
-							if (def.anuses != null)
-							{
-								if (!def.anuses.Contains(hediffDef.defName))
-								{
-									return false;
-								}
-							}
-						}
+				//		if (hediffDef.IsGenitals())
+				//		{
+				//			if (def.femaleGenitals != null || def.maleGenitals != null)
+				//			{
+				//				if (def.femaleGenitals != null && def.femaleGenitals.Contains(hediffDef.defName))
+				//				{
+				//					return true;
+				//				}
+				//				else if (def.maleGenitals != null && def.maleGenitals.Contains(hediffDef.defName))
+				//				{
+				//					return true;
+				//				}
+				//				return false;
+				//			}
+				//		}
+				//		if (hediffDef.IsAnus())
+				//		{
+				//			if (def.anuses != null)
+				//			{
+				//				if (!def.anuses.Contains(hediffDef.defName))
+				//				{
+				//					return false;
+				//				}
+				//			}
+				//		}
 
-						if (hediffDef.IsOvipositor())
-						{
-							if (!def.oviPregnancy)
-							{
-								return false;
-							}
-						}
-					}
-				}
+				//		if (hediffDef.IsOvipositor())
+				//		{
+				//			if (!def.oviPregnancy)
+				//			{
+				//				return false;
+				//			}
+				//		}
+				//	}
+				//}
 
-				if (hediffDef.IsGenitals())
-				{
-					return hediffDef == rjw.Genital_Helper.average_penis || hediffDef == rjw.Genital_Helper.average_vagina;
-				}
-				else if (hediffDef.IsBreasts())
-				{
-					return hediffDef == rjw.Genital_Helper.average_breasts;
-				}
-				else if (hediffDef.IsAnus())
-				{
-					return hediffDef == rjw.Genital_Helper.average_anus;
-				}
-				else if (hediffDef.IsOvipositor())
+				//if (hediffDef.IsGenitals())
+				//{
+				//	return hediffDef == rjw.Genital_Helper.average_penis || hediffDef == rjw.Genital_Helper.average_vagina;
+				//}
+				//else if (hediffDef.IsBreasts())
+				//{
+				//	return hediffDef == rjw.Genital_Helper.average_breasts;
+				//}
+				//else if (hediffDef.IsAnus())
+				//{
+				//	return hediffDef == rjw.Genital_Helper.average_anus;
+				//}
+				if (hediffDef.IsOvipositor())
 				{
 					return false;
 				}
@@ -568,98 +568,98 @@ namespace AlteredCarbon
 		public static RJWData GetRjwData(Pawn pawn)
 		{
 			RJWData rjwData = null;
-			try
-			{
-                rjw.DataStore dataStore = Find.World.GetComponent<rjw.DataStore>();
-                if (dataStore != null)
-                {
-                    rjwData = new RJWData();
-                    rjw.PawnData pawnData = dataStore.GetPawnData(pawn);
-                    if (pawnData != null)
-                    {
-                        foreach (FieldInfo fieldInfo in typeof(rjw.PawnData).GetFields())
-                        {
-                            try
-                            {
-                                FieldInfo newField = rjwData.GetType().GetField(fieldInfo.Name);
-                                newField.SetValue(rjwData, fieldInfo.GetValue(pawnData));
-                            }
-                            catch { }
-                        }
-                    }
+			//try
+			//{
+   //             rjw.DataStore dataStore = Find.World.GetComponent<rjw.DataStore>();
+   //             if (dataStore != null)
+   //             {
+   //                 rjwData = new RJWData();
+   //                 rjw.PawnData pawnData = dataStore.GetPawnData(pawn);
+   //                 if (pawnData != null)
+   //                 {
+   //                     foreach (FieldInfo fieldInfo in typeof(rjw.PawnData).GetFields())
+   //                     {
+   //                         try
+   //                         {
+   //                             FieldInfo newField = rjwData.GetType().GetField(fieldInfo.Name);
+   //                             newField.SetValue(rjwData, fieldInfo.GetValue(pawnData));
+   //                         }
+   //                         catch { }
+   //                     }
+   //                 }
 
-                }
-                rjw.CompRJW comp = ThingCompUtility.TryGetComp<rjw.CompRJW>(pawn);
-                if (comp != null)
-                {
-                    if (rjwData is null)
-                    {
-                        rjwData = new RJWData();
-                    }
-                    rjwData.quirksave = comp.quirksave;
-					if (rjwData.quirksave != null)
-					{
-                        rjwData.quirksave = rjwData.quirksave.Replace("Fertile", "");
-                        rjwData.quirksave = rjwData.quirksave.Replace("Infertile", "");
-                    }
-                    rjwData.orientation = (OrientationAC)(int)comp.orientation;
-                    rjwData.NextHookupTick = comp.NextHookupTick;
-                }
-            }
-			catch (Exception ex)
-			{
-				Log.Error("Error getting RJW data: " + ex.ToString());
-			}
+   //             }
+   //             rjw.CompRJW comp = ThingCompUtility.TryGetComp<rjw.CompRJW>(pawn);
+   //             if (comp != null)
+   //             {
+   //                 if (rjwData is null)
+   //                 {
+   //                     rjwData = new RJWData();
+   //                 }
+   //                 rjwData.quirksave = comp.quirksave;
+			//		if (rjwData.quirksave != null)
+			//		{
+   //                     rjwData.quirksave = rjwData.quirksave.Replace("Fertile", "");
+   //                     rjwData.quirksave = rjwData.quirksave.Replace("Infertile", "");
+   //                 }
+   //                 rjwData.orientation = (OrientationAC)(int)comp.orientation;
+   //                 rjwData.NextHookupTick = comp.NextHookupTick;
+   //             }
+   //         }
+			//catch (Exception ex)
+			//{
+			//	Log.Error("Error getting RJW data: " + ex.ToString());
+			//}
 			return rjwData;
 		}
 
 		public static void SetRjwData(Pawn pawn, RJWData rjwData)
 		{
-			try
-			{
-                rjw.DataStore dataStore = Find.World.GetComponent<rjw.DataStore>();
-                if (dataStore != null)
-                {
-                    rjw.PawnData pawnData = dataStore.GetPawnData(pawn);
-                    if (pawnData != null)
-                    {
-                        foreach (FieldInfo fieldInfo in typeof(RJWData).GetFields())
-                        {
-                            try
-                            {
-                                FieldInfo newField = pawnData.GetType().GetField(fieldInfo.Name);
-                                newField.SetValue(pawnData, fieldInfo.GetValue(rjwData));
-                            }
-                            catch { }
-                        }
-                        if (pawnData.Hero)
-                        {
-                            foreach (Pawn otherPawn in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_OfPlayerFaction)
-                            {
-                                if (otherPawn != pawn)
-                                {
-                                    rjw.PawnData otherPawnData = dataStore.GetPawnData(otherPawn);
-                                    otherPawnData.Hero = false;
-                                }
-                            }
-                        }
-                    }
-                }
+			//try
+			//{
+   //             rjw.DataStore dataStore = Find.World.GetComponent<rjw.DataStore>();
+   //             if (dataStore != null)
+   //             {
+   //                 rjw.PawnData pawnData = dataStore.GetPawnData(pawn);
+   //                 if (pawnData != null)
+   //                 {
+   //                     foreach (FieldInfo fieldInfo in typeof(RJWData).GetFields())
+   //                     {
+   //                         try
+   //                         {
+   //                             FieldInfo newField = pawnData.GetType().GetField(fieldInfo.Name);
+   //                             newField.SetValue(pawnData, fieldInfo.GetValue(rjwData));
+   //                         }
+   //                         catch { }
+   //                     }
+   //                     if (pawnData.Hero)
+   //                     {
+   //                         foreach (Pawn otherPawn in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_OfPlayerFaction)
+   //                         {
+   //                             if (otherPawn != pawn)
+   //                             {
+   //                                 rjw.PawnData otherPawnData = dataStore.GetPawnData(otherPawn);
+   //                                 otherPawnData.Hero = false;
+   //                             }
+   //                         }
+   //                     }
+   //                 }
+   //             }
 
-                rjw.CompRJW comp = ThingCompUtility.TryGetComp<rjw.CompRJW>(pawn);
-                if (comp != null)
-                {
-                    comp.quirksave = rjwData.quirksave;
-                    comp.quirks = new System.Text.StringBuilder(comp.quirksave);
+   //             rjw.CompRJW comp = ThingCompUtility.TryGetComp<rjw.CompRJW>(pawn);
+   //             if (comp != null)
+   //             {
+   //                 comp.quirksave = rjwData.quirksave;
+   //                 comp.quirks = new System.Text.StringBuilder(comp.quirksave);
 
-                    comp.orientation = (rjw.Orientation)(int)rjwData.orientation;
-                    comp.NextHookupTick = rjwData.NextHookupTick;
-                }
-            }
-			catch (Exception e)
-			{
-				Log.Error("Error setting RJW data: " + e.ToString());
-			}
+   //                 comp.orientation = (rjw.Orientation)(int)rjwData.orientation;
+   //                 comp.NextHookupTick = rjwData.NextHookupTick;
+   //             }
+   //         }
+			//catch (Exception e)
+			//{
+			//	Log.Error("Error setting RJW data: " + e.ToString());
+			//}
 		}
 	}
 
